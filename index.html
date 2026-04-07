@@ -11,7 +11,7 @@
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; font-size: 16px; }
   body {
-    font-family: 'Outfit', sans-serif;
+    font-family: 'Times New Roman', Times, serif;
     color: #1A1A1A;
     background: #FFFFFF;
     line-height: 1.7;
@@ -53,7 +53,7 @@
   .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--black); }
   .nav-logo svg { width: 22px; height: auto; }
   .nav-logo span {
-    font-family: 'Libre Baskerville', serif; font-weight: 700;
+    font-family: 'Times New Roman', Times, serif; font-weight: 700;
     font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase;
   }
   .nav-links { display: flex; gap: 28px; list-style: none; }
@@ -95,13 +95,13 @@
     to { opacity: 1; transform: scale(1) translateY(0); }
   }
   .hero-wordmark {
-    font-family: 'Libre Baskerville', serif; font-weight: 700;
+    font-family: 'Times New Roman', Times, serif; font-weight: 700;
     font-size: 1.1rem; letter-spacing: 4px; text-transform: uppercase;
     color: var(--black); margin-bottom: 8px;
     animation: fadeUp 1s 0.3s cubic-bezier(0.16,1,0.3,1) both;
   }
   .hero-tagline {
-    font-family: 'Libre Baskerville', serif; font-style: italic;
+    font-family: 'Times New Roman', Times, serif; font-style: italic;
     font-size: 1.05rem; color: var(--deep-blue); margin-bottom: 60px;
     animation: fadeUp 1s 0.5s cubic-bezier(0.16,1,0.3,1) both;
   }
@@ -111,17 +111,17 @@
     margin-bottom: 48px; animation: fadeUp 1s 0.6s cubic-bezier(0.16,1,0.3,1) both;
   }
   .hero-title {
-    font-family: 'Outfit', sans-serif; font-weight: 300; font-size: 1.5rem;
+    font-family: 'Times New Roman', Times, serif; font-weight: 300; font-size: 1.5rem;
     color: var(--slate); margin-bottom: 8px;
     animation: fadeUp 1s 0.7s cubic-bezier(0.16,1,0.3,1) both;
   }
   .hero-subtitle {
-    font-family: 'Outfit', sans-serif; font-weight: 400; font-size: 1.1rem;
+    font-family: 'Times New Roman', Times, serif; font-weight: 400; font-size: 1.1rem;
     color: var(--slate); margin-bottom: 16px;
     animation: fadeUp 1s 0.8s cubic-bezier(0.16,1,0.3,1) both;
   }
   .hero-date {
-    font-family: 'Outfit', sans-serif; font-weight: 400; font-size: 0.95rem;
+    font-family: 'Times New Roman', Times, serif; font-weight: 400; font-size: 0.95rem;
     color: var(--slate); animation: fadeUp 1s 0.9s cubic-bezier(0.16,1,0.3,1) both;
   }
   @keyframes fadeUp {
@@ -138,25 +138,25 @@
     text-transform: uppercase; color: var(--slate); text-align: center;
   }
   .scroll-arrow {
-    width: 20px; height: 20px; margin: 0 auto;
+    width: 24px; height: 24px; margin: 0 auto;
     border-right: 2px solid var(--deep-blue); border-bottom: 2px solid var(--deep-blue);
-    transform: rotate(45deg); animation: bounce 2s infinite;
+    transform: rotate(45deg); animation: floatDown 2s ease-in-out infinite;
   }
-  @keyframes bounce {
-    0%,20%,50%,80%,100% { transform: rotate(45deg) translateY(0); }
-    40% { transform: rotate(45deg) translateY(6px); }
-    60% { transform: rotate(45deg) translateY(3px); }
+  @keyframes floatDown {
+    0% { opacity: 0.4; transform: translateY(-4px) rotate(45deg); }
+    50% { opacity: 1; transform: translateY(6px) rotate(45deg); }
+    100% { opacity: 0.4; transform: translateY(-4px) rotate(45deg); }
   }
 
   /* ── Section Shared ── */
   section { padding: 100px 40px; }
   .container { max-width: 900px; margin: 0 auto; }
   .section-label {
-    font-weight: 600; font-size: 0.72rem; letter-spacing: 3px;
+    font-weight: 600; font-size: 0.92rem; letter-spacing: 3px;
     text-transform: uppercase; color: var(--deep-blue); margin-bottom: 12px;
   }
   .section-title {
-    font-family: 'Libre Baskerville', serif; font-weight: 700; font-size: 2rem;
+    font-family: 'Times New Roman', Times, serif; font-weight: 700; font-size: 2rem;
     color: var(--black); margin-bottom: 20px; line-height: 1.3;
   }
   .section-divider {
@@ -177,7 +177,7 @@
   }
   .placeholder-box .icon svg { width: 24px; height: 24px; stroke: var(--deep-blue); fill: none; }
   .placeholder-box h3 {
-    font-family: 'Libre Baskerville', serif; font-size: 1.15rem;
+    font-family: 'Times New Roman', Times, serif; font-size: 1.15rem;
     color: var(--rich-black); margin-bottom: 10px;
   }
   .placeholder-box p { color: var(--slate); font-size: 0.92rem; max-width: 500px; margin: 0 auto; }
@@ -187,7 +187,7 @@
   .loi-section:nth-child(even) { background: var(--off-white); }
   .loi-address { font-size: 0.95rem; color: var(--slate); margin-bottom: 32px; line-height: 1.8; }
   .loi-re {
-    font-family: 'Libre Baskerville', serif; font-weight: 700;
+    font-family: 'Times New Roman', Times, serif; font-weight: 700;
     font-size: 1rem; margin-bottom: 28px; color: var(--black);
   }
   .loi-body p {
@@ -230,7 +230,7 @@
     margin-top: 40px; padding-top: 40px; border-top: 2px solid var(--ice-blue);
   }
   .sig-block h4 {
-    font-family: 'Libre Baskerville', serif; font-size: 0.95rem;
+    font-family: 'Times New Roman', Times, serif; font-size: 0.95rem;
     font-weight: 700; margin-bottom: 28px; color: var(--black);
   }
   .sig-line { border-bottom: 1px solid var(--slate); margin-bottom: 6px; height: 32px; }
@@ -239,11 +239,104 @@
   .sig-person { margin-bottom: 32px; }
   .sig-person:last-child { margin-bottom: 0; }
 
+  /* ── Ordered List in LOI Body ── */
+  .loi-body ol {
+    margin: 20px 0 28px 0; list-style: none; counter-reset: initiatives;
+    padding-left: 0;
+  }
+  .loi-body ol li {
+    font-size: 0.95rem; color: var(--rich-black); margin-bottom: 18px;
+    line-height: 1.7; padding-left: 44px; position: relative;
+    counter-increment: initiatives;
+  }
+  .loi-body ol li::before {
+    content: counter(initiatives);
+    position: absolute; left: 0; top: 0;
+    width: 30px; height: 30px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--deep-blue), var(--sky-blue));
+    color: var(--white); font-weight: 600; font-size: 0.82rem;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  /* ── Team Grid ── */
+  .team-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 0;
+  }
+  .team-card {
+    display: flex; align-items: center; gap: 18px;
+    padding: 28px 0; border-bottom: 1px solid rgba(197,220,240,0.15);
+  }
+  .team-card:nth-last-child(-n+2) { border-bottom: none; }
+  .team-photo {
+    width: 72px; height: 72px; border-radius: 50%; object-fit: cover;
+    flex-shrink: 0; filter: grayscale(100%);
+  }
+  .team-info { flex: 1; }
+  .team-name {
+    font-family: 'Times New Roman', Times, serif; font-weight: 700;
+    font-size: 1rem; color: var(--black); margin-bottom: 4px;
+  }
+  .team-title {
+    font-size: 0.82rem; font-weight: 600; color: var(--deep-blue);
+    text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 2px;
+  }
+  .team-role {
+    font-size: 0.88rem; color: var(--slate); line-height: 1.5;
+  }
+  /* ── Board Expanded Layout ── */
+  .board-list { display: flex; flex-direction: column; gap: 0; }
+  .board-card {
+    display: flex; align-items: flex-start; gap: 24px;
+    padding: 32px 0; border-bottom: 1px solid rgba(197,220,240,0.15);
+  }
+  .board-card:last-child { border-bottom: none; }
+  .board-photo-wrap { flex-shrink: 0; }
+  .board-photo {
+    width: 80px; height: 80px; border-radius: 50%; object-fit: cover;
+    filter: grayscale(100%);
+  }
+  .board-info { flex: 1; }
+  .board-name {
+    font-family: 'Times New Roman', Times, serif; font-weight: 700;
+    font-size: 1.05rem; color: var(--black); margin-bottom: 2px;
+  }
+  .board-title {
+    font-size: 0.78rem; font-weight: 600; color: var(--deep-blue);
+    text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 6px;
+  }
+  .board-bio {
+    font-size: 0.88rem; color: var(--slate); line-height: 1.65;
+  }
+
+  /* ── Board Stats ── */
+  .board-stats {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;
+    margin-top: 12px;
+  }
+  .board-stat {
+    text-align: center; padding: 28px 16px;
+    border: 1px solid rgba(74,127,168,0.12); border-radius: 10px;
+    background: linear-gradient(135deg, rgba(197,220,240,0.06) 0%, rgba(137,180,212,0.03) 100%);
+  }
+  .board-stat-number {
+    font-family: 'Times New Roman', Times, serif; font-weight: 700;
+    font-size: 1.8rem; color: var(--deep-blue); margin-bottom: 6px;
+    line-height: 1.1;
+  }
+  .board-stat-label {
+    font-size: 0.75rem; font-weight: 500; color: var(--slate);
+    text-transform: uppercase; letter-spacing: 1px; line-height: 1.4;
+  }
+  @media (max-width: 768px) {
+    .team-grid { grid-template-columns: 1fr; }
+    .board-stats { grid-template-columns: repeat(2, 1fr); }
+  }
+
   /* ── Footer ── */
   .footer { background: var(--rich-black); padding: 48px 40px; text-align: center; }
   .footer-logo svg { width: 32px; height: auto; margin-bottom: 16px; }
   .footer-wordmark {
-    font-family: 'Libre Baskerville', serif; font-weight: 700;
+    font-family: 'Times New Roman', Times, serif; font-weight: 700;
     font-size: 0.75rem; letter-spacing: 3px; text-transform: uppercase;
     color: var(--white); margin-bottom: 8px;
   }
@@ -327,18 +420,159 @@
       <h2 class="section-title">Executive Summary</h2>
       <div class="section-divider"></div>
     </div>
+    <div class="reveal loi-body" style="transition-delay:0.15s">
+      <p>Methodic Ventures is an acquisition group designed to source, acquire, and grow trade services businesses in the New England area. We focus on small, cash-flow positive businesses with steady demand and simple operations to maximize operational improvement. We target businesses in service industries such as landscaping, hardscaping, HVAC, plumbing, pest control, fire prevention safety, roofing, and other local services.</p>
+      <p>We are not a fund. We do not flip businesses. We acquire, retain existing teams, and modernize operations through technology and process improvement, holding them for the long term.</p>
+      <p>After acquiring a business, we focus on improving operational structure, customer visibility, and unit economics. Our value creation centers around six primary initiatives:</p>
+      <ol>
+        <li>Targeted implementation of AI and automation to reduce administrative burden in areas such as scheduling, dispatching, invoicing, customer follow-up, and reporting</li>
+        <li>Professionalized digital marketing and lead generation including website optimization, local SEO, paid search, and reputation management to maximize inbound lead flow and reduce customer acquisition costs</li>
+        <li>Implementation of a simple management operating system to improve reporting cadence, KPI tracking, and data-driven decision making across the business</li>
+        <li>Workforce development and retention programs to reduce technician turnover, build bench strength, and create clear career pathways through structured training and competitive compensation</li>
+        <li>Vendor and supply chain optimization to improve margins through consolidated purchasing, renegotiated supplier terms, and standardized materials procurement</li>
+        <li>Strategic bolt-on acquisitions to accelerate growth by adding complementary service lines, absorbing smaller competitors for route density, and vertically integrating the supply chain where economics justify it</li>
+      </ol>
+      <p>Our objective is to build a portfolio of well-run, durable businesses that generate consistent cash flow and long-term value. We view exits as optional rather than required and prioritize transparency, and alignment with our investors. Through disciplined acquisitions, Methodic Ventures seeks to create and compound value responsibly over time.</p>
+    </div>
+  </div>
+
+  <!-- Methodic Partners -->
+  <div class="container" style="margin-top: 60px;">
+    <div class="reveal">
+      <div class="section-label">Methodic Partners</div>
+      <div class="section-divider"></div>
+    </div>
     <div class="reveal" style="transition-delay:0.15s">
-      <div class="placeholder-box">
-        <div class="icon">
-          <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-            <polyline points="14 2 14 8 20 8"/>
-            <line x1="12" y1="18" x2="12" y2="12"/>
-            <line x1="9" y1="15" x2="15" y2="15"/>
-          </svg>
+      <img src="Photos/Methodic Team Photo2.jpg" alt="Methodic Partners" style="width:100%; border-radius:10px; margin-bottom:24px;">
+      <div style="display:flex; justify-content:center; gap:60px; text-align:center;">
+        <div>
+          <div class="board-name">Logan Mestler</div>
+          <div class="board-title">Co-Founding Managing Partner</div>
         </div>
-        <h3>Content Coming Soon</h3>
-        <p>This section will contain an overview of who Methodic Ventures is, what we do, our strategic vision for Mass Landscape Inc., and our advisory team.</p>
+        <div>
+          <div class="board-name">Gavin Mestler</div>
+          <div class="board-title">Co-Founding Managing Partner</div>
+        </div>
+        <div>
+          <div class="board-name">Dean Farber</div>
+          <div class="board-title">Co-Founding Managing Partner</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Operating Team -->
+  <div class="container" style="margin-top: 60px;">
+    <div class="reveal">
+      <div class="section-label">Operating Team</div>
+      <div class="section-divider"></div>
+    </div>
+    <div class="reveal" style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; transition-delay:0.15s">
+      <div>
+        <div style="display: flex; align-items: center; gap: 18px; margin-bottom: 16px;">
+          <img class="team-photo" src="Photos/Tiff headshot.jpg" alt="Tiffany Sergi" style="object-position: center 10%;">
+          <div>
+            <div class="board-name">Tiffany Sergi</div>
+            <div class="board-title">Operations</div>
+          </div>
+        </div>
+        <div class="board-bio">COO/CEO with 12+ years of experience scaling service-based businesses. At Landscapes by D&amp;J, she grew revenue from $2M to $5M+ while increasing profitability. Managed 60+ employees at peak season with full P&amp;L ownership, built an 8-person leadership team with defined KPIs, and implemented ERP, CRM, and scheduling systems to drive operational efficiency at scale.</div>
+      </div>
+      <div>
+        <div style="display: flex; align-items: center; gap: 18px; margin-bottom: 16px;">
+          <img class="team-photo" src="Photos/V-Shah Durran.png" alt="Shah Durran">
+          <div>
+            <div class="board-name">Shah Durran</div>
+            <div class="board-title">Technology &amp; Automation</div>
+          </div>
+        </div>
+        <div class="board-bio">Full stack developer and founder of Fluidify Systems, a business automation firm that has deployed hundreds of AI-driven systems for businesses across the United States. Certified Make.com and n8n Automation Specialist with expertise in building seamless, high-performance automation solutions for operational efficiency and scalable growth.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Methodic Board -->
+  <div class="container" style="margin-top: 60px;">
+    <div class="reveal">
+      <div class="section-label">Methodic Board</div>
+      <div class="section-divider"></div>
+    </div>
+    <div class="reveal board-stats" style="transition-delay:0.1s">
+      <div class="board-stat">
+        <div class="board-stat-number">$2.6B+</div>
+        <div class="board-stat-label">In M&amp;A Transaction Value</div>
+      </div>
+      <div class="board-stat">
+        <div class="board-stat-number">100+</div>
+        <div class="board-stat-label">M&amp;A Deals Advised</div>
+      </div>
+      <div class="board-stat">
+        <div class="board-stat-number">~$1B</div>
+        <div class="board-stat-label">Private Capital Deployed</div>
+      </div>
+      <div class="board-stat">
+        <div class="board-stat-number">150+</div>
+        <div class="board-stat-label">Years Combined Experience</div>
+      </div>
+    </div>
+    <div class="reveal board-list" style="transition-delay:0.15s">
+      <div class="board-card">
+        <img class="board-photo" src="Photos/v-Brad Johnson.jpg" alt="Brad Johnson">
+        <div class="board-info">
+          <div class="board-name">Brad Johnson</div>
+          <div class="board-title">Operations</div>
+          <div class="board-bio">Professor Emeritus at Babson College and Former Vice President at Wayfair, where he built and launched CastleGate Fulfillment and established Wayfair as the #1 home category partner on Amazon, Walmart, eBay, Best Buy, and more. Named Babson's Undergraduate Faculty of the Year. Board member at Dorel Industries.</div>
+        </div>
+      </div>
+      <div class="board-card">
+        <img class="board-photo" src="Photos/scott-waxler.jpg" alt="Scott Waxler">
+        <div class="board-info">
+          <div class="board-name">Scott Waxler</div>
+          <div class="board-title">M&amp;A</div>
+          <div class="board-bio">Managing Partner of LockeBridge Capital Partners, a nationally recognized boutique investment bank. 25+ years in M&amp;A and corporate finance, having advised over 100 companies on mergers, acquisitions, and capital raises with deal sizes from $10M to over $1B. Recipient of the M&amp;A Advisor "Deal Maker of the Year" Award. MBA from Hofstra, BA from UPenn.</div>
+        </div>
+      </div>
+      <div class="board-card">
+        <img class="board-photo" src="Photos/V-Evan Farber.png" alt="Evan Farber">
+        <div class="board-info">
+          <div class="board-name">Evan Farber</div>
+          <div class="board-title">Legal</div>
+          <div class="board-bio">General Counsel at The Cranemere Group and Board Member of Flotek Industries (NYSE: FTK). 20+ years of transactions, compliance, and governance experience. Served as Chief Legal Officer of The Advisory Board Company through its $2.58B sale to Optum/UnitedHealth and Vista Equity Partners. Former Partner at Hogan Lovells. GW Law School.</div>
+        </div>
+      </div>
+      <div class="board-card">
+        <div class="board-photo-wrap" style="width:80px; height:80px; border-radius:50%; overflow:hidden;">
+          <img src="Photos/Matt Headshot_Apr 2026.png" alt="Matt Walker" style="width:100%; height:100%; object-fit:cover; object-position:center 0%; transform:scale(1.05); filter:grayscale(100%);">
+        </div>
+        <div class="board-info">
+          <div class="board-name">Matt Walker</div>
+          <div class="board-title">Acquisitions</div>
+          <div class="board-bio">Investor, operator, and entrepreneur specializing in SMB acquisitions ($500K&ndash;$10M revenue) and real estate. Expertise in M&amp;A, joint ventures, and roll-ups. Forum Chair for Entrepreneurs' Organization (EO) San Diego.</div>
+        </div>
+      </div>
+      <div class="board-card">
+        <img class="board-photo" src="Photos/chad-mestler.jpg" alt="Chad Mestler">
+        <div class="board-info">
+          <div class="board-name">Chad Mestler</div>
+          <div class="board-title">Capital Markets</div>
+          <div class="board-bio">CEO of Helvetica Group since 2001, a real estate investment bank and multi-family office. Has sponsored over 1,000 real estate investments and is responsible for nearly $1B in private investments across lending, distressed assets, and investment management. Co-Founder of Raiseli. J.D. from Pepperdine School of Law.</div>
+        </div>
+      </div>
+      <div class="board-card">
+        <img class="board-photo" src="Photos/erik-noyes.jpg" alt="Erik Noyes">
+        <div class="board-info">
+          <div class="board-name">Erik Noyes</div>
+          <div class="board-title">Strategy</div>
+          <div class="board-bio">Associate Professor of Entrepreneurship at Babson College and founder of The Generator, Babson's interdisciplinary AI lab. Named a Top 50 Business Professor in the U.S. by Poets &amp; Quants. Previously consulted for Nokia, BMW, Hewlett-Packard, New Balance, and Motorola on growth strategy and innovation.</div>
+        </div>
+      </div>
+      <div class="board-card">
+        <img class="board-photo" src="Photos/edward-gorelick.jpg" alt="Edward Gorelick">
+        <div class="board-info">
+          <div class="board-name">Edward Gorelick</div>
+          <div class="board-title">Accounting</div>
+          <div class="board-bio">President and Founder of Gorelick &amp; Uslaner, CPAs, a firm established in 1947 providing tax planning, business management, audit and attestation, and trustee services for nearly eight decades.</div>
+        </div>
       </div>
     </div>
   </div>
