@@ -6,7 +6,7 @@
 <title>Letter of Intent — Acquisition of Mass Landscape Inc. | Methodic Ventures</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; font-size: 16px; }
@@ -224,6 +224,201 @@
   .payment-table .total-row { background: var(--off-white) !important; font-weight: 700; }
   .payment-table .total-row td { color: var(--deep-blue); }
 
+  /* ── Floating CTA Bar ── */
+  .download-bar {
+    position: fixed; bottom: 0; left: 0; right: 0; z-index: 999;
+    text-align: center; padding: 16px 40px;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+    border-top: 1px solid rgba(74,127,168,0.15);
+    box-shadow: 0 -4px 24px rgba(0,0,0,0.08);
+  }
+  .cta-btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: 'Outfit', sans-serif; font-weight: 600; font-size: 0.92rem;
+    color: var(--white); background: var(--deep-blue);
+    padding: 14px 32px; border: none; border-radius: 8px;
+    cursor: pointer; text-decoration: none;
+    transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+    letter-spacing: 0.5px;
+  }
+  .cta-btn:hover {
+    background: #3d6d93; transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(74,127,168,0.25);
+  }
+  .cta-btn svg { width: 18px; height: 18px; stroke: currentColor; fill: none; }
+  .cta-btn.download-variant { background: #2d8a4e; }
+  .cta-btn.download-variant:hover { background: #237a40; }
+
+  /* ── Signature Pad Modal ── */
+  .sig-modal-overlay {
+    display: none; position: fixed; inset: 0; z-index: 2000;
+    background: rgba(0,0,0,0.5); backdrop-filter: blur(4px);
+    align-items: center; justify-content: center;
+  }
+  .sig-modal-overlay.open { display: flex; }
+  .sig-modal {
+    background: var(--white); border-radius: 16px; padding: 36px;
+    width: 90%; max-width: 520px; box-shadow: 0 24px 80px rgba(0,0,0,0.2);
+    position: relative;
+  }
+  .sig-modal h3 {
+    font-family: 'Libre Baskerville', serif; font-size: 1.1rem;
+    margin-bottom: 24px; color: var(--black);
+  }
+  .sig-modal-close {
+    position: absolute; top: 16px; right: 16px; background: none;
+    border: none; cursor: pointer; font-size: 1.4rem; color: var(--slate);
+  }
+  .sig-modal label {
+    display: block; font-size: 0.82rem; font-weight: 500;
+    color: var(--slate); margin-bottom: 4px; margin-top: 16px;
+  }
+  .sig-modal input {
+    width: 100%; border: 1px solid var(--ice-blue); border-radius: 8px;
+    padding: 12px 14px; font-family: 'Outfit', sans-serif; font-size: 0.95rem;
+    color: var(--rich-black); outline: none; transition: border-color 0.3s;
+  }
+  .sig-modal input:focus { border-color: var(--deep-blue); }
+  .sig-modal input.modal-sig-input {
+    font-family: 'Caveat', cursive; font-weight: 600; font-size: 1.5rem;
+    padding: 16px 14px;
+  }
+  .sig-modal-preview {
+    margin-top: 20px; padding: 16px; border-radius: 8px;
+    background: var(--off-white); text-align: center; min-height: 48px;
+  }
+  .sig-modal-preview .preview-sig {
+    font-family: 'Caveat', cursive; font-weight: 600;
+    font-size: 2rem; color: var(--black);
+  }
+  .sig-modal-btns { display: flex; gap: 12px; margin-top: 24px; }
+  .sig-modal-btns button {
+    flex: 1; padding: 12px; border-radius: 8px; font-family: 'Outfit', sans-serif;
+    font-weight: 600; font-size: 0.9rem; cursor: pointer; transition: all 0.3s;
+  }
+  .sig-modal-btns .sig-cancel {
+    background: transparent; border: 1px solid var(--ice-blue); color: var(--slate);
+  }
+  .sig-modal-btns .sig-apply {
+    background: var(--deep-blue); border: none; color: var(--white);
+  }
+  .sig-modal-btns .sig-apply:hover { background: #3d6d93; }
+
+  /* ── Pre-signed signature display ── */
+  .sig-signed {
+    font-family: 'Caveat', cursive; font-weight: 600;
+    font-size: 1.6rem; color: var(--black); border-bottom: 1px solid var(--slate);
+    padding: 4px 0 4px; margin-bottom: 2px;
+  }
+  .sig-date-filled {
+    font-family: 'Outfit', sans-serif; font-size: 0.95rem; color: var(--rich-black);
+    border-bottom: 1px solid var(--slate); padding: 8px 0 6px; margin-bottom: 2px;
+  }
+
+  /* Clickable signature area for seller */
+  .sig-click-area {
+    border: 2px dashed var(--ice-blue); border-radius: 8px;
+    padding: 16px; text-align: center; cursor: pointer;
+    transition: border-color 0.3s, background 0.3s; margin-bottom: 4px;
+  }
+  .sig-click-area:hover { border-color: var(--deep-blue); background: rgba(74,127,168,0.04); }
+  .sig-click-area .sig-click-prompt {
+    font-size: 0.85rem; color: var(--sky-blue); font-weight: 500;
+  }
+  .sig-click-area.signed { border-style: solid; border-color: var(--ice-blue); cursor: default; }
+  .sig-click-area.signed:hover { background: transparent; }
+
+  /* Download section at bottom of signatures */
+  .download-section {
+    text-align: center; margin-top: 48px; padding: 32px;
+    background: linear-gradient(135deg, rgba(74,127,168,0.06) 0%, rgba(137,180,212,0.04) 100%);
+    border-radius: 12px; border: 1px solid rgba(74,127,168,0.12);
+  }
+  .download-section p {
+    font-size: 0.88rem; color: var(--slate); margin-bottom: 16px;
+  }
+
+  /* ── Print Styles ── */
+  @media print {
+    /* Hide interactive elements */
+    .nav, .progress-bar, .hero-scroll-indicator, .download-bar, .sig-modal-overlay, .sig-click-prompt, .download-section { display: none !important; }
+    .sig-click-area { border: none !important; padding: 0 !important; }
+    .sig-click-area.signed { border: none !important; }
+
+    /* Force grayscale on all photos including inline styles */
+    .board-photo, .team-photo, .board-photo-wrap img {
+      filter: grayscale(100%) !important; -webkit-filter: grayscale(100%) !important;
+    }
+
+    /* Kill all animations */
+    .reveal, .reveal-left, .reveal-right { opacity: 1 !important; transform: none !important; transition: none !important; }
+
+    /* Page setup */
+    @page { margin: 0.6in 0.75in; size: letter; }
+    body { font-size: 10.5pt; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+    /* Cover page */
+    .hero {
+      min-height: 0; height: 100vh; padding: 0;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      page-break-after: always; break-after: page;
+    }
+    .hero::before, .hero::after { display: none; }
+
+    /* Sections: each starts on a new page */
+    section {
+      page-break-before: always; break-before: page;
+      padding: 30px 0;
+    }
+
+    /* Allow long sections to flow across pages, but protect individual elements */
+    p, li { orphans: 3; widows: 3; }
+    p { page-break-inside: avoid; break-inside: avoid; }
+    li { page-break-inside: avoid; break-inside: avoid; }
+
+    /* Headings must stay with content after them */
+    .section-label, .section-title, .section-divider, h3, h4 {
+      page-break-after: avoid; break-after: avoid;
+    }
+
+    /* Signature block: never split */
+    .signature-grid { page-break-inside: avoid; break-inside: avoid; }
+    .sig-block { page-break-inside: avoid; break-inside: avoid; }
+    .sig-person { page-break-inside: avoid; break-inside: avoid; }
+
+    /* Images: don't split, keep grayscale */
+    img { page-break-inside: avoid; break-inside: avoid; filter: grayscale(100%) !important; }
+
+    /* Cards / advisor cards / stat cards: don't split */
+    .board-card, .stat-card, .metric-card, .advisor-card {
+      page-break-inside: avoid; break-inside: avoid;
+      margin-bottom: 12px;
+    }
+    .board-card { page-break-inside: avoid !important; break-inside: avoid !important; }
+    .board-bio { page-break-inside: avoid; break-inside: avoid; }
+    .sig-input-group { page-break-inside: avoid; break-inside: avoid; }
+    .sig-person { page-break-inside: avoid; break-inside: avoid; }
+
+    /* Never break inside these containers */
+    .loi-body ul { page-break-inside: avoid; break-inside: avoid; }
+    .reveal { page-break-inside: avoid; break-inside: avoid; }
+    div[style*="display: flex"] { page-break-inside: avoid; break-inside: avoid; }
+    div[style*="display:flex"] { page-break-inside: avoid; break-inside: avoid; }
+
+    /* Footer on its own page */
+    .footer {
+      page-break-inside: avoid; break-inside: avoid;
+      page-break-before: always; break-before: page;
+    }
+
+    /* Container */
+    .container { max-width: 100%; }
+
+    /* Ordered lists */
+    ol { page-break-before: avoid; break-before: avoid; }
+  }
+
   /* ── Signature Block ── */
   .signature-grid {
     display: grid; grid-template-columns: 1fr 1fr; gap: 40px;
@@ -234,10 +429,26 @@
     font-weight: 700; margin-bottom: 28px; color: var(--black);
   }
   .sig-line { border-bottom: 1px solid var(--slate); margin-bottom: 6px; height: 32px; }
-  .sig-label { font-size: 0.82rem; color: var(--slate); margin-bottom: 18px; }
+  .sig-label { font-size: 0.82rem; color: var(--slate); margin-bottom: 4px; }
   .sig-filled { font-size: 0.92rem; color: var(--rich-black); font-weight: 500; }
   .sig-person { margin-bottom: 32px; }
   .sig-person:last-child { margin-bottom: 0; }
+
+  /* Interactive signature inputs */
+  .sig-input {
+    width: 100%; border: none; border-bottom: 1px solid var(--slate);
+    background: transparent; font-family: 'Outfit', sans-serif;
+    font-size: 0.95rem; color: var(--rich-black); padding: 8px 0 6px;
+    margin-bottom: 2px; outline: none;
+    transition: border-color 0.3s;
+  }
+  .sig-input:focus { border-bottom-color: var(--deep-blue); }
+  .sig-input::placeholder { color: #bbb; font-style: italic; font-size: 0.85rem; }
+  .sig-input.sig-signature {
+    font-family: 'Libre Baskerville', serif; font-style: italic;
+    font-size: 1.15rem;
+  }
+  .sig-input-group { margin-bottom: 14px; }
 
   /* ── Ordered List in LOI Body ── */
   .loi-body ol {
@@ -421,9 +632,10 @@
       <div class="section-divider"></div>
     </div>
     <div class="reveal loi-body" style="transition-delay:0.15s">
-      <p>Methodic Ventures is an acquisition group designed to source, acquire, and grow trade services businesses in the New England area. We focus on small, cash-flow positive businesses with steady demand and simple operations to maximize operational improvement. We target businesses in service industries such as landscaping, hardscaping, HVAC, plumbing, pest control, fire prevention safety, roofing, and other local services.</p>
-      <p>We are not a fund. We do not flip businesses. We acquire, retain existing teams, and modernize operations through technology and process improvement, holding them for the long term.</p>
-      <p>After acquiring a business, we focus on improving operational structure, customer visibility, and unit economics. Our value creation centers around six primary initiatives:</p>
+      <p>The New England landscaping and hardscaping market is highly fragmented, with thousands of owner-operated businesses generating steady revenue and strong cash flows. Many owners are approaching retirement with no succession plan, creating a historic wave of acquisition opportunities at attractive valuations.</p>
+      <p>Methodic Ventures is building a landscaping platform through disciplined acquisitions of proven, profitable businesses in Massachusetts and New England. We acquire companies with strong reputations and steady cash flows, retain their brand identities, and create value through backend consolidation and operational improvement, without disrupting the customer relationships and service quality that made each business successful.</p>
+      <p>Each acquisition operates semi-independently under its established brand, while benefiting from shared infrastructure, purchasing power, and operational best practices. Our model replaces retiring owners with experienced operators, ensuring continuity and accountability while Methodic drives improvement from the backend.</p>
+      <p>Our value creation centers around six primary initiatives:</p>
       <ol>
         <li>Targeted implementation of AI and automation to reduce administrative burden in areas such as scheduling, dispatching, invoicing, customer follow-up, and reporting</li>
         <li>Professionalized digital marketing and lead generation including website optimization, local SEO, paid search, and reputation management to maximize inbound lead flow and reduce customer acquisition costs</li>
@@ -432,7 +644,7 @@
         <li>Vendor and supply chain optimization to improve margins through consolidated purchasing, renegotiated supplier terms, and standardized materials procurement</li>
         <li>Strategic bolt-on acquisitions to accelerate growth by adding complementary service lines, absorbing smaller competitors for route density, and vertically integrating the supply chain where economics justify it</li>
       </ol>
-      <p>Our objective is to build a portfolio of well-run, durable businesses that generate consistent cash flow and long-term value. We view exits as optional rather than required and prioritize transparency, and alignment with our investors. Through disciplined acquisitions, Methodic Ventures seeks to create and compound value responsibly over time.</p>
+      <p>Our vision is to turn a fragmented industry into New England&rsquo;s premier landscaping services platform.</p>
     </div>
   </div>
 
@@ -480,7 +692,7 @@
       </div>
       <div>
         <div style="display: flex; align-items: center; gap: 18px; margin-bottom: 16px;">
-          <img class="team-photo" src="Photos/V-Shah Durran.png" alt="Shah Durran">
+          <img class="team-photo" src="Photos/V-Shah Durran.png" alt="Shah Durran" style="object-position: center 20%;">
           <div>
             <div class="board-name">Shah Durran</div>
             <div class="board-title">Technology &amp; Automation</div>
@@ -598,8 +810,6 @@
       Re: Non-Binding Letter of Intent to Acquire Mass Landscape Inc.
     </div>
     <div class="loi-body">
-      <p class="reveal" style="transition-delay:0.2s">Dear [Owner&rsquo;s Name],</p>
-
       <p class="reveal">After conducting a thorough review of Mass Landscaping Inc., we are pleased to submit this Letter of Intent to acquire 100% of the assets of Mass Landscape Inc. In structuring our LOI we have taken into account the following:</p>
 
       <ul class="reveal stagger">
@@ -658,84 +868,15 @@
       <p class="reveal">Payment for the Assets will consist of a total purchase price of <strong>$1,500,000</strong>, which is comprised as follows:</p>
       <ul class="reveal">
         <li><strong>Cash at Close:</strong> $150,000 (10% of purchase price)</li>
-        <li><strong>Seller Financing:</strong> $1,350,000 (90% of purchase price) &mdash; The Seller will carry a note for $1,350,000 at <strong>6% annual interest</strong> on the outstanding principal balance, repaid from operating cash flow as described below.</li>
+        <li><strong>Seller Financing:</strong> $1,350,000 (90% of purchase price) &mdash; The Seller will carry a note for $1,350,000, repaid from operating cash flow.</li>
       </ul>
 
       <div class="reveal">
         <h3 style="font-family:'Libre Baskerville',serif;font-size:1.15rem;margin:40px 0 16px;color:var(--black);">Seller Financing Repayment Terms</h3>
-        <p>The seller note of $1,350,000 carries a <strong>6% annual interest rate</strong> on the outstanding principal balance, repaid from operating cash flow as follows:</p>
         <ul>
           <li><strong>Base Annual Payment:</strong> $100,000 per year from operating cash flow.</li>
-          <li><strong>Cash Flow Participation:</strong> In addition to the base payment, the Seller will receive 30% of all operating cash flow.</li>
+          <li><strong>Cash Flow Participation:</strong> In addition to the base payment, the Seller will receive 30% of all operating cash flow until the remaining principal is repaid.</li>
         </ul>
-        <p>Cash distributions to the Seller are based on our projections of a modest 5% increase year-over-year in distributable cash flow. The estimated repayment schedule is as follows:</p>
-      </div>
-
-      <div class="reveal">
-        <h3 style="font-family:'Libre Baskerville',serif;font-size:1.15rem;margin:40px 0 20px;color:var(--black);">Estimated Payment Schedule</h3>
-        <table class="payment-table">
-          <thead>
-            <tr>
-              <th>Year</th>
-              <th>Cash Distribution</th>
-              <th>Interest (6%)</th>
-              <th>Principal Paid</th>
-              <th>Remaining Balance</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Year 1</td>
-              <td>$253,544</td>
-              <td>$81,000</td>
-              <td>$172,544</td>
-              <td>$1,177,456</td>
-            </tr>
-            <tr>
-              <td>Year 2</td>
-              <td>$290,478</td>
-              <td>$70,647</td>
-              <td>$219,831</td>
-              <td>$957,625</td>
-            </tr>
-            <tr>
-              <td>Year 3</td>
-              <td>$300,002</td>
-              <td>$57,458</td>
-              <td>$242,544</td>
-              <td>$715,081</td>
-            </tr>
-            <tr>
-              <td>Year 4</td>
-              <td>$310,002</td>
-              <td>$42,905</td>
-              <td>$267,097</td>
-              <td>$447,984</td>
-            </tr>
-            <tr>
-              <td>Year 5</td>
-              <td>$320,502</td>
-              <td>$26,879</td>
-              <td>$293,623</td>
-              <td>$154,361</td>
-            </tr>
-            <tr>
-              <td>Year 6</td>
-              <td>$163,623</td>
-              <td>$9,262</td>
-              <td>$154,361</td>
-              <td>$0 (Paid in Full)</td>
-            </tr>
-            <tr class="total-row">
-              <td>Total</td>
-              <td>$1,638,151</td>
-              <td>$288,151</td>
-              <td>$1,350,000</td>
-              <td>&mdash;</td>
-            </tr>
-          </tbody>
-        </table>
-        <p style="font-size:0.88rem;color:var(--slate);margin-top:8px;">Total payments to Seller over the life of the note: approximately <strong style="color:var(--deep-blue);">$1,788,151</strong> (including $150,000 cash at close and $288,151 in cumulative interest).</p>
       </div>
 
       <p class="reveal" style="margin-top:32px;"><strong>Balloon Payment Option:</strong> At Year 3, if interest rates are favorable and cash flow remains above a mutually agreed threshold, Buyer may elect to refinance the remaining balance and accelerate the Seller&rsquo;s payout through a balloon payment.</p>
@@ -804,55 +945,128 @@
     </div>
 
     <!-- Signature Block -->
-    <div class="signature-grid reveal">
+    <div class="signature-grid reveal" id="signatures">
       <div class="sig-block">
         <h4>MASS LANDSCAPE INC. (SELLER)</h4>
         <div class="sig-person">
-          <div class="sig-line"></div>
-          <div class="sig-label">By:</div>
-          <div class="sig-line"></div>
-          <div class="sig-label">Name:</div>
-          <div class="sig-line"></div>
-          <div class="sig-label">Title:</div>
-          <div class="sig-line"></div>
-          <div class="sig-label">Date:</div>
+          <div class="sig-input-group">
+            <div class="sig-click-area" id="sellerSigArea" onclick="openSignModal()">
+              <div class="sig-click-prompt">Click here to sign</div>
+              <div id="sellerSigDisplay" style="display:none;"></div>
+            </div>
+            <div class="sig-label">Signature</div>
+          </div>
+          <div class="sig-input-group">
+            <div id="sellerDateDisplay" class="sig-date-filled" style="min-height:32px;"></div>
+            <div class="sig-label">Date</div>
+          </div>
+          <div class="sig-input-group">
+            <div id="sellerNameDisplay" class="sig-date-filled" style="min-height:32px;"></div>
+            <div class="sig-label">Name</div>
+          </div>
+          <div class="sig-input-group">
+            <div id="sellerTitleDisplay" class="sig-date-filled" style="min-height:32px;"></div>
+            <div class="sig-label">Title</div>
+          </div>
         </div>
       </div>
       <div class="sig-block">
         <h4>METHODIC VENTURES LLC (BUYER)</h4>
 
         <div class="sig-person">
-          <div class="sig-line"></div>
-          <div class="sig-label">By:</div>
-          <div class="sig-line"></div>
+          <div class="sig-input-group">
+            <div class="sig-signed">Gavin Mestler</div>
+            <div class="sig-label">Signature</div>
+          </div>
+          <div class="sig-input-group">
+            <div class="sig-date-filled">04/04/2026</div>
+            <div class="sig-label">Date</div>
+          </div>
           <div class="sig-label">Name: <span class="sig-filled">Gavin Mestler</span></div>
           <div class="sig-label">Title: <span class="sig-filled">Co-Founding Managing Partner</span></div>
         </div>
 
         <div class="sig-person">
-          <div class="sig-line"></div>
-          <div class="sig-label">By:</div>
-          <div class="sig-line"></div>
+          <div class="sig-input-group">
+            <div class="sig-signed">Logan Mestler</div>
+            <div class="sig-label">Signature</div>
+          </div>
+          <div class="sig-input-group">
+            <div class="sig-date-filled">04/04/2026</div>
+            <div class="sig-label">Date</div>
+          </div>
           <div class="sig-label">Name: <span class="sig-filled">Logan Mestler</span></div>
           <div class="sig-label">Title: <span class="sig-filled">Co-Founding Managing Partner</span></div>
         </div>
 
         <div class="sig-person">
-          <div class="sig-line"></div>
-          <div class="sig-label">By:</div>
-          <div class="sig-line"></div>
+          <div class="sig-input-group">
+            <div class="sig-signed">Dean Farber</div>
+            <div class="sig-label">Signature</div>
+          </div>
+          <div class="sig-input-group">
+            <div class="sig-date-filled">04/04/2026</div>
+            <div class="sig-label">Date</div>
+          </div>
           <div class="sig-label">Name: <span class="sig-filled">Dean Farber</span></div>
           <div class="sig-label">Title: <span class="sig-filled">Co-Founding Managing Partner</span></div>
         </div>
-
-        <div class="sig-label" style="margin-top:8px;">Date: ___________________</div>
       </div>
+    </div>
+
+    <!-- Download after signing -->
+    <div class="download-section reveal" id="downloadSection">
+      <p>After signing, download the completed document below.</p>
+      <button class="cta-btn download-variant" id="downloadBtn" onclick="generatePDF()">
+        <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+          <polyline points="7 10 12 15 17 10"/>
+          <line x1="12" y1="15" x2="12" y2="3"/>
+        </svg>
+        <span id="btnText">Download Signed Document</span>
+      </button>
     </div>
   </div>
 </section>
 
+<!-- Signature Modal -->
+<div class="sig-modal-overlay" id="sigModal">
+  <div class="sig-modal">
+    <button class="sig-modal-close" onclick="closeSignModal()">&times;</button>
+    <h3>Sign Document</h3>
+    <label>Your Signature</label>
+    <input type="text" class="modal-sig-input" id="modalSigInput" placeholder="Type your full name as signature">
+    <div class="sig-modal-preview">
+      <div class="preview-sig" id="sigPreview">&nbsp;</div>
+    </div>
+    <label>Full Name</label>
+    <input type="text" id="modalNameInput" placeholder="Full legal name">
+    <label>Title</label>
+    <input type="text" id="modalTitleInput" placeholder="e.g. Owner, President">
+    <label>Date</label>
+    <input type="text" id="modalDateInput" placeholder="MM/DD/YYYY">
+    <div class="sig-modal-btns">
+      <button class="sig-cancel" onclick="closeSignModal()">Cancel</button>
+      <button class="sig-apply" onclick="applySignature()">Sign &amp; Apply</button>
+    </div>
+  </div>
+</div>
+
+<!-- Floating CTA Bar -->
+<div class="download-bar">
+  <button class="cta-btn" onclick="document.getElementById('signatures').scrollIntoView({behavior:'smooth'})">
+    <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+      <polyline points="9 17 12 20 15 17"/>
+      <line x1="12" y1="12" x2="12" y2="20"/>
+      <path d="M9 7h6"/>
+    </svg>
+    Click Here to Sign
+  </button>
+</div>
+
 <!-- Footer -->
-<div class="footer">
+<div class="footer" style="padding-bottom:80px;">
   <div class="footer-logo">
     <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
       <polygon points="0,0 50,55 100,0 100,70 50,100 0,70" fill="#FFFFFF"/>
@@ -864,7 +1078,91 @@
   <div class="footer-confidential">Confidential</div>
 </div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.2/html2pdf.bundle.min.js"></script>
 <script>
+  // ── Signature Modal ──
+  function openSignModal() {
+    const modal = document.getElementById('sigModal');
+    modal.classList.add('open');
+    // Pre-fill date with today
+    const today = new Date();
+    document.getElementById('modalDateInput').value =
+      String(today.getMonth()+1).padStart(2,'0') + '/' +
+      String(today.getDate()).padStart(2,'0') + '/' +
+      today.getFullYear();
+    document.getElementById('modalSigInput').focus();
+  }
+  function closeSignModal() {
+    document.getElementById('sigModal').classList.remove('open');
+  }
+  // Live preview of signature
+  document.addEventListener('DOMContentLoaded', function() {
+    const sigInput = document.getElementById('modalSigInput');
+    if (sigInput) {
+      sigInput.addEventListener('input', function() {
+        document.getElementById('sigPreview').textContent = this.value || '\u00a0';
+      });
+    }
+  });
+  function applySignature() {
+    const sig = document.getElementById('modalSigInput').value.trim();
+    const name = document.getElementById('modalNameInput').value.trim();
+    const title = document.getElementById('modalTitleInput').value.trim();
+    const date = document.getElementById('modalDateInput').value.trim();
+    if (!sig) { alert('Please type your signature.'); return; }
+    if (!name) { alert('Please enter your full name.'); return; }
+
+    // Apply to seller signature area
+    const sigArea = document.getElementById('sellerSigArea');
+    const sigDisplay = document.getElementById('sellerSigDisplay');
+    sigDisplay.className = 'sig-signed';
+    sigDisplay.textContent = sig;
+    sigDisplay.style.display = 'block';
+    sigArea.querySelector('.sig-click-prompt').style.display = 'none';
+    sigArea.classList.add('signed');
+    sigArea.onclick = null;
+
+    document.getElementById('sellerDateDisplay').textContent = date;
+    document.getElementById('sellerNameDisplay').textContent = name;
+    document.getElementById('sellerTitleDisplay').textContent = title;
+
+    closeSignModal();
+  }
+
+  // ── PDF Generation ──
+  function generatePDF() {
+    const btn = document.getElementById('downloadBtn');
+    const btnText = document.getElementById('btnText');
+    btnText.textContent = 'Generating PDF...';
+    btn.style.pointerEvents = 'none';
+    btn.style.opacity = '0.7';
+
+    // Show all reveals
+    document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
+
+    // Hide UI-only elements
+    const hideEls = document.querySelectorAll('.nav, .progress-bar, .hero-scroll-indicator, .download-bar, .sig-modal-overlay, .download-section, .sig-click-prompt');
+    hideEls.forEach(el => el.style.display = 'none');
+
+    // Hide dashed border on signed area
+    const sigArea = document.getElementById('sellerSigArea');
+    const origBorder = sigArea.style.border;
+    sigArea.style.border = 'none';
+
+    window.scrollTo(0, 0);
+
+    // Use print for clean PDF - it respects CSS page breaks perfectly
+    setTimeout(() => {
+      window.print();
+      // Restore everything
+      hideEls.forEach(el => el.style.display = '');
+      sigArea.style.border = origBorder;
+      btnText.textContent = 'Download Signed Document';
+      btn.style.pointerEvents = '';
+      btn.style.opacity = '';
+    }, 300);
+  }
+
   // Scroll Reveal
   const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver((entries) => {
